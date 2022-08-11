@@ -1,16 +1,7 @@
-# Webpack THREE.js Template
-
-## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+# folio
 
 ``` bash
-# Install dependencies (only for first time)
-npm i
+a WebGL experience, Visualizer with Feels build with ThreeJS
+live: https://hollow.digital
 
-# Serve at localhost:8080
-npm run dev
-
-# Build for production in the dist/ directory
-npm run build
 ```
