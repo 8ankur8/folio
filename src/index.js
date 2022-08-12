@@ -111,7 +111,7 @@ function init() {
     // texture
     const textureLoader = new THREE.TextureLoader(loadingManager)
     const matcapTexture = textureLoader.load('/images/12.png')
-	matcapMaterial =  new THREE.MeshMatcapMaterial({matcap:matcapTexture})
+    matcapMaterial =  new THREE.MeshMatcapMaterial({matcap:matcapTexture})
 	
     // audio Loader
 	// const listener = new THREE.AudioListener()
@@ -291,9 +291,10 @@ function init() {
     labelRenderer.domElement.style.top = '0px';
     document.body.appendChild( labelRenderer.domElement );
 
-    controls = new Fps(camera,labelRenderer.domElement )
+    //controls = new Fps(camera,labelRenderer.domElement )
+    controls = new FirstPersonControls(camera,labelRenderer.domElement )	
     controls.lookSpeed = 0.01
-	controls.rollSpeed = 0.5
+    controls.rollSpeed = 0.5
 
     //
     window.addEventListener( 'resize', onWindowResize )
