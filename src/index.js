@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js' 
 //import { CameraControls } from './utils/CameraControls.js'
-import { Fps } from 'three/examples/js/controls/FPS.js'
+import { Fps } from 'hollow/FPS.js'
 import particleVertex from './shaders/particle/vertex.glsl'
 import particleFragment from './shaders/particle/fragment.glsl'
 import grassVertexShader from './shaders/grass/vertex.glsl'
@@ -12,7 +12,8 @@ import grassFragmentShader from './shaders/grass/fragment.glsl'
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 
-let camera, scene, renderer, labelRenderer,controls, particleAbsorb,moon,matcapMaterial
+let camera, scene, renderer, labelRenderer,controls, particleAbsorb
+let matcapMaterial , project1Material , project2Material
 let mixer ={}
 let objects ={} 
 let keyboard ={}
@@ -111,8 +112,13 @@ function init() {
     // texture
     const textureLoader = new THREE.TextureLoader(loadingManager)
     const matcapTexture = textureLoader.load('/images/12.png')
+	const project1Texture = textureLoader.load('/images/project1.png')
+	const project2Texture = textureLoader.load('/images/project2.png')
+
 	matcapMaterial =  new THREE.MeshMatcapMaterial({matcap:matcapTexture})
-	
+	project1Material = new THREE.MeshBasicMaterial({map: project1Texture })
+	project2Material = new THREE.MeshBasicMaterial({map: project2Texture })
+
     // audio Loader
 	// const listener = new THREE.AudioListener()
     // const audioLoader = new THREE.AudioLoader()
@@ -268,21 +274,19 @@ function init() {
 		scene.add(object)
 	}
 
-    LinkElement(25,25,"#",new THREE.Vector3(45,1.2,-15),-0.5,-0.78,1)
-	LinkElement(25,25,"#",new THREE.Vector3(45,1.2,15),0.5,0.78,1)
-	LinkElement(7,7,"https://www.linkedin.com/in/ankur-gurjar-385918174",new THREE.Vector3(-1.19,1.276,100.139),1,0,0)
+    LinkElement(25,25,"https://planes-nft.netlify.app",new THREE.Vector3(45,1.2,-15),-0.5,-0.78,1)
+	LinkElement(25,25,"https://hollow-swift.netlify.app",new THREE.Vector3(45,1.2,15),0.5,0.78,1)
+	LinkElement(7,7,"https://discord.gg/37zVFKTM",new THREE.Vector3(-1.19,1.276,100.139),1,0,0)
 	LinkElement(7,7,"https://twitter.com/a_liveankur",new THREE.Vector3(-1.65,1.361,100.370),1,0,-0.5)
-	LinkElement(7,7,"#",new THREE.Vector3(-0.9,1.347,100.557),1,0,0)
-	LinkElement(8,8,"#",new THREE.Vector3(-1.104,1.65,100.902),0.2,0,0)
-	LinkElement(8,8,"#",new THREE.Vector3(-1.9,1.7,100.7),0,0,0)
-    //LinkElement(15,15,"https://www.google.co.in/",new THREE.Vector3(10,2,0))
-   
-    
+	LinkElement(7,7,"https://www.linkedin.com/in/ankur-gurjar-385918174",new THREE.Vector3(-0.9,1.347,100.557),1,0,0)
+	LinkElement(8,8,"https://github.com/8ankur8",new THREE.Vector3(-1.104,1.65,100.902),0.2,0,0)
+	LinkElement(8,8,"mailto:aliveankur@hollow.digital",new THREE.Vector3(-1.9,1.7,100.7),0,0,0)
+
+
 
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.outputEncoding = THREE.sRGBEncoding;
     document.body.appendChild( renderer.domElement );
 
     labelRenderer = new CSS3DRenderer();
@@ -324,6 +328,12 @@ function onResourceLoaded(){
 			child.geometry.computeBoundingSphere()
 		}
 	})
+
+	const project1Mesh = objects["world"].children.find(child => child.name === 'project1')
+	const project2Mesh = objects["world"].children.find(child => child.name === 'project2')
+
+	project1Mesh.material = project1Material
+	project2Mesh.material = project2Material
 
     scene.add(objects["world"])
 	
