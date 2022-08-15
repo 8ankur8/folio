@@ -33,6 +33,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "custom-fps": "^1.1.0",
     "dat.gui": "^0.7.7"
   }
 }
