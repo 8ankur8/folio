@@ -1,14 +1,11 @@
 import './style.css'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls.js' 
-//import { CameraControls } from './utils/CameraControls.js'
-import { Fps } from 'hollow/FPS.js'
+import  { Fps }  from 'custom-fps/FPS.js'
 import particleVertex from './shaders/particle/vertex.glsl'
 import particleFragment from './shaders/particle/fragment.glsl'
 import grassVertexShader from './shaders/grass/vertex.glsl'
 import grassFragmentShader from './shaders/grass/fragment.glsl'
-
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 
@@ -112,12 +109,16 @@ function init() {
     // texture
     const textureLoader = new THREE.TextureLoader(loadingManager)
     const matcapTexture = textureLoader.load('/images/12.png')
+
 	const project1Texture = textureLoader.load('/images/project1.png')
 	const project2Texture = textureLoader.load('/images/project2.png')
 
 	matcapMaterial =  new THREE.MeshMatcapMaterial({matcap:matcapTexture})
 	project1Material = new THREE.MeshBasicMaterial({map: project1Texture })
 	project2Material = new THREE.MeshBasicMaterial({map: project2Texture })
+
+
+    matcapMaterial =  new THREE.MeshMatcapMaterial({matcap:matcapTexture})
 
     // audio Loader
 	// const listener = new THREE.AudioListener()
@@ -297,7 +298,7 @@ function init() {
 
     controls = new Fps(camera,labelRenderer.domElement )
     controls.lookSpeed = 0.01
-	controls.rollSpeed = 0.5
+    controls.rollSpeed = 0.5
 
     //
     window.addEventListener( 'resize', onWindowResize )
@@ -476,5 +477,5 @@ function keyUp(event){
 window.addEventListener('keydown', keyDown)
 window.addEventListener('keyup', keyUp)
 
-//
+
 
