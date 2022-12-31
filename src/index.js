@@ -268,6 +268,7 @@ function init() {
 		element.style.height = height + 'px';
 		element.className= 'label';
 		element.href = link;
+		element.target = "_blank"
 		const object = new CSS3DObject( element );
 		object.position.copy(pos)
 		object.rotation.set(x,y,z)

@@ -28,16 +28,6 @@ module.exports = {
                 use: ['html-loader']
             },
 
-            // JS
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use:
-                [
-                    'babel-loader'
-                ]
-            },
-
             // CSS
             {
                 test: /\.css$/,
@@ -45,6 +35,16 @@ module.exports = {
                 [
                     'style-loader',
                     'css-loader'
+                ]
+            },
+
+            // JS
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use:
+                [
+                    'babel-loader'
                 ]
             },
 
